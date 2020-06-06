@@ -17,7 +17,7 @@ steps:
         from_secret: GITPWD
     image: ubuntu:20.04
     commands:
-      - git clone https://$GITID:$GITPWD@github.com/$(cat /drone/src/repo) -b $(cat /drone/src/branch) --depth=1 kernel
+      - apt-get update && apt-get install -y git && git clone https://$GITID:$GITPWD@github.com/$(cat /drone/src/repo) -b $(cat /drone/src/branch) --depth=1 kernel
       - cd kernel
       - ./drone-setup
       - ./drone-build
