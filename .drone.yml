@@ -15,6 +15,10 @@ steps:
         from_secret: GITID
       GITPWD:
         from_secret: GITPWD
+      bot_token:
+        from_secret: bot_token
+      chat_id:
+        from_secret: chat_id
     image: ubuntu:18.04
     commands:
       - export HOME=/drone
