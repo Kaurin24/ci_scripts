@@ -20,4 +20,5 @@ steps:
       - export HOME=/drone
       - apt-get update && apt-get install -y git && git clone https://$GITID:$GITPWD@github.com/$(cat /drone/src/repo) -b $(cat /drone/src/branch) --depth=1 kernel
       - cd kernel
-      - ./drone_build.sh
+      - ./drone-setup
+      - ./drone-build
