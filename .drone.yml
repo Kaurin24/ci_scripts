@@ -15,7 +15,7 @@ steps:
         from_secret: GITID
       GITPWD:
         from_secret: GITPWD
-    image: ubuntu:20.04
+    image: ubuntu:18.04
     commands:
       - export HOME=/drone
       - apt-get update && apt-get install -y git && git clone https://$GITID:$GITPWD@github.com/$(cat /drone/src/repo) -b $(cat /drone/src/branch) --depth=1 kernel
