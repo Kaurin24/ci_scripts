@@ -1,5 +1,5 @@
 kind: pipeline
-name: kernel-test
+name: ImageBreaker
 
 platform:
   os: linux
@@ -9,7 +9,7 @@ clone:
   depth: 1
 
 steps:
-  - name: kernel-test
+  - name: build
     environment:
       GITID:
         from_secret: GITID
@@ -20,5 +20,4 @@ steps:
       - export HOME=/drone
       - apt-get update && apt-get install -y git && git clone https://$GITID:$GITPWD@github.com/$(cat /drone/src/repo) -b $(cat /drone/src/branch) --depth=1 kernel
       - cd kernel
-      - ./drone-setup
-      - ./drone-build
+      - ./drone_build.sh
