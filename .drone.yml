@@ -1,5 +1,5 @@
 kind: pipeline
-name: ImageBreaker
+name: temp
 
 platform:
   os: linux
