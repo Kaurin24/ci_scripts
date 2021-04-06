@@ -1,0 +1,31 @@
+kind: pipeline
+name: Incubator
+
+platform:
+  os: linux
+  arch: amd64
+
+clone:
+  depth: 1
+
+steps:
+  - name: setup&build
+    image: ubuntu:latest
+    environment:
+      GITID:
+        from_secret: git_id
+      GITPWD:
+        from_secret: git_pwd
+      bot_token:
+        from_secret: bot_token
+      chat_id:
+        from_secret: chat_id
+    commands:
+      - export HOME=/drone
+      - apt-get update && apt-get install -y build-essential bc python curl git zip gcc-aarch64-linux-gnu gcc-arm-linux-gnueabi libssl-dev wget libfl-dev bison
+      - git clone https://$GITID:$GITPWD@github.com/Ratoriku/msm-4.19 -b staging --depth=1 kernel
+      - git clone --depth=1 https://github.com/Ratoriku/AnyKernel3.git
+      - git clone --depth=1 https://github.com/arter97/arm64-gcc.git
+      - git clone --depth=1 https://github.com/arter97/arm32-gcc.git
+      - cd kernel
+      - ./ci-build
