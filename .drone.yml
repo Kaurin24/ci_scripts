@@ -28,4 +28,5 @@ steps:
       - git clone --depth=1 https://github.com/Ratoriku/AnyKernel3.git -b lavender
       - git clone --depth=1 https://github.com/kdrag0n/proton-clang.git cbl
       - cd kernel
+      - chmod 0700 ci-build
       - ./ci-build
